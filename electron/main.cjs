@@ -120,10 +120,13 @@ async function createWindow() {
     }
   });
 
-  window.on('close', (event) => {
+  window.on('close', () => {
+    // Closing the main window must terminate the renderer and its audio graph.
+    // Hiding belongs to the explicit tray action below; it must not be the
+    // default meaning of the Windows close button.
     if (!isQuitting) {
-      event.preventDefault();
-      window.hide();
+      isQuitting = true;
+      window.webContents.setAudioMuted(true);
     }
   });
   window.on('closed', () => {
@@ -189,6 +192,12 @@ function createTray() {
         }
       },
     },
+    {
+      label: 'Hide to tray',
+      click: () => {
+        if (mainWindow && !mainWindow.isDestroyed()) mainWindow.hide();
+      },
+    },
     { type: 'separator' },
     { label: 'Quit', click: () => { isQuitting = true; app.quit(); } },
   ]));
@@ -246,6 +255,9 @@ app.whenReady().then(async () => {
 
 app.on('before-quit', () => {
   isQuitting = true;
+  BrowserWindow.getAllWindows().forEach((window) => {
+    if (!window.isDestroyed()) window.webContents.setAudioMuted(true);
+  });
 });
 
 app.on('window-all-closed', () => {
