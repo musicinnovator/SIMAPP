@@ -37,7 +37,15 @@ function Get-TreeStats([string]$root) {
 }
 
 function Get-Sha256([string]$path) {
-  (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant()
+  $sha = [System.Security.Cryptography.SHA256]::Create()
+  $stream = [System.IO.File]::OpenRead($path)
+  try {
+    return [System.BitConverter]::ToString($sha.ComputeHash($stream)).Replace('-', '').ToLowerInvariant()
+  }
+  finally {
+    $stream.Dispose()
+    $sha.Dispose()
+  }
 }
 
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path

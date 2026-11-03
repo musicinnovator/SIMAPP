@@ -1,5 +1,6 @@
 {
   "name": "scripture-in-music-offline",
+  "main": "electron/main.cjs",
   "private": true,
   "version": "0.1.0",
   "description": "Free, non-commercial offline scripture memorization and music practice software.",
