@@ -1,0 +1,223 @@
+/* Professional UI Utility Classes
+ * Scripture in Music - Professional Redesign
+ * Additive-only enhancement layer
+ */
+
+/* Professional Card Styles */
+.pro-card {
+  @apply bg-white rounded-lg border border-neutral-200 p-6;
+  @apply hover:border-primary-500 hover:shadow-md transition-all;
+}
+
+.pro-card-interactive {
+  @apply pro-card cursor-pointer;
+}
+
+/* Professional Icon Containers */
+.pro-icon-container {
+  @apply p-3 rounded-lg w-fit;
+}
+
+.pro-icon-primary {
+  @apply pro-icon-container bg-primary-50 text-primary-600;
+}
+
+.pro-icon-accent {
+  @apply pro-icon-container bg-accent-50 text-accent-600;
+}
+
+.pro-icon-success {
+  @apply pro-icon-container bg-success-50 text-success-600;
+}
+
+/* Professional Button Styles */
+.pro-button-primary {
+  @apply px-6 py-3 bg-primary-600 text-white rounded-md font-semibold;
+  @apply hover:bg-primary-700 transition-colors;
+  @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+}
+
+.pro-button-secondary {
+  @apply px-6 py-3 bg-white text-primary-600 border border-primary-600 rounded-md font-semibold;
+  @apply hover:bg-primary-50 transition-colors;
+  @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+}
+
+.pro-button-ghost {
+  @apply px-4 py-2 text-neutral-600 rounded-md font-medium;
+  @apply hover:bg-neutral-100 hover:text-neutral-900 transition-colors;
+}
+
+/* Professional Typography */
+.pro-heading-1 {
+  @apply text-4xl font-bold text-neutral-900 tracking-tight;
+}
+
+.pro-heading-2 {
+  @apply text-3xl font-bold text-neutral-900 tracking-tight;
+}
+
+.pro-heading-3 {
+  @apply text-2xl font-bold text-neutral-900;
+}
+
+.pro-heading-4 {
+  @apply text-xl font-semibold text-neutral-900;
+}
+
+.pro-body-large {
+  @apply text-lg text-neutral-600 leading-relaxed;
+}
+
+.pro-body {
+  @apply text-base text-neutral-600 leading-relaxed;
+}
+
+.pro-body-small {
+  @apply text-sm text-neutral-600 leading-relaxed;
+}
+
+/* Professional Navigation */
+.pro-nav-item {
+  @apply px-4 py-2 rounded-md font-medium transition-colors;
+  @apply text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100;
+}
+
+.pro-nav-item-active {
+  @apply pro-nav-item bg-primary-50 text-primary-600;
+  @apply hover:bg-primary-100;
+}
+
+/* Professional Tab Navigation */
+.pro-tab {
+  @apply px-4 py-3 font-medium transition-colors border-b-2;
+  @apply border-transparent text-neutral-600 hover:text-neutral-900;
+}
+
+.pro-tab-active {
+  @apply border-primary-600 text-primary-600;
+}
+
+/* Professional Form Elements */
+.pro-input {
+  @apply w-full px-4 py-2 border border-neutral-300 rounded-md;
+  @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500;
+  @apply placeholder-neutral-400 text-neutral-900;
+}
+
+.pro-label {
+  @apply block text-sm font-medium text-neutral-700 mb-1;
+}
+
+/* Professional Section Spacing */
+.pro-section {
+  @apply py-12 px-4;
+}
+
+.pro-section-tight {
+  @apply py-8 px-4;
+}
+
+.pro-container {
+  @apply container mx-auto max-w-6xl;
+}
+
+.pro-container-narrow {
+  @apply container mx-auto max-w-4xl;
+}
+
+/* Professional Backgrounds */
+.pro-bg-page {
+  @apply bg-background-cream min-h-screen;
+}
+
+.pro-bg-section-light {
+  @apply bg-neutral-50;
+}
+
+.pro-bg-section-white {
+  @apply bg-white;
+}
+
+/* Professional Shadows */
+.pro-shadow-card {
+  @apply shadow-sm hover:shadow-md transition-shadow;
+}
+
+.pro-shadow-elevated {
+  @apply shadow-lg;
+}
+
+/* Professional Borders */
+.pro-border-light {
+  @apply border border-neutral-200;
+}
+
+.pro-border-medium {
+  @apply border-2 border-neutral-300;
+}
+
+.pro-divider {
+  @apply border-t border-neutral-200;
+}
+
+/* Professional Status Indicators */
+.pro-badge {
+  @apply inline-flex items-center px-3 py-1 rounded-md text-sm font-medium;
+}
+
+.pro-badge-primary {
+  @apply pro-badge bg-primary-100 text-primary-700;
+}
+
+.pro-badge-success {
+  @apply pro-badge bg-success-100 text-success-700;
+}
+
+.pro-badge-accent {
+  @apply pro-badge bg-accent-100 text-accent-700;
+}
+
+/* Professional Grid Layouts */
+.pro-grid-2 {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+}
+
+.pro-grid-3 {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.pro-grid-4 {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6;
+}
+
+/* Professional Transitions */
+.pro-transition {
+  @apply transition-all duration-200 ease-in-out;
+}
+
+.pro-transition-fast {
+  @apply transition-all duration-150 ease-in-out;
+}
+
+/* Focus Visible (Accessibility) */
+.pro-focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+}
+
+/* Professional Alert/Banner */
+.pro-alert {
+  @apply p-4 rounded-md border;
+}
+
+.pro-alert-info {
+  @apply pro-alert bg-primary-50 border-primary-200 text-primary-800;
+}
+
+.pro-alert-success {
+  @apply pro-alert bg-success-50 border-success-200 text-success-800;
+}
+
+.pro-alert-warning {
+  @apply pro-alert bg-accent-50 border-accent-200 text-accent-800;
+}

@@ -1,0 +1,58 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" rx="100" fill="#3b82f6"/>
+
+  <!-- Open Bible -->
+  <g transform="translate(80, 160)">
+    <!-- Left page -->
+    <path d="M 10 20 Q 10 10 20 10 L 160 10 L 160 180 L 20 180 Q 10 180 10 170 Z" fill="#ffffff" stroke="#1e293b" stroke-width="4"/>
+    <!-- Right page -->
+    <path d="M 180 10 L 330 10 Q 340 10 340 20 L 340 170 Q 340 180 330 180 L 180 180 Z" fill="#ffffff" stroke="#1e293b" stroke-width="4"/>
+    <!-- Center binding -->
+    <rect x="165" y="10" width="10" height="170" fill="#1e293b"/>
+    <!-- Page lines (left) -->
+    <line x1="30" y1="40" x2="140" y2="40" stroke="#cbd5e1" stroke-width="2"/>
+    <line x1="30" y1="60" x2="140" y2="60" stroke="#cbd5e1" stroke-width="2"/>
+    <line x1="30" y1="80" x2="140" y2="80" stroke="#cbd5e1" stroke-width="2"/>
+    <line x1="30" y1="100" x2="140" y2="100" stroke="#cbd5e1" stroke-width="2"/>
+    <line x1="30" y1="120" x2="140" y2="120" stroke="#cbd5e1" stroke-width="2"/>
+    <line x1="30" y1="140" x2="140" y2="140" stroke="#cbd5e1" stroke-width="2"/>
+    <line x1="30" y1="160" x2="140" y2="160" stroke="#cbd5e1" stroke-width="2"/>
+    <!-- Page lines (right) -->
+    <line x1="200" y1="40" x2="320" y2="40" stroke="#cbd5e1" stroke-width="2"/>
+    <line x1="200" y1="60" x2="320" y2="60" stroke="#cbd5e1" stroke-width="2"/>
+    <line x1="200" y1="80" x2="320" y2="80" stroke="#cbd5e1" stroke-width="2"/>
+    <line x1="200" y1="100" x2="320" y2="100" stroke="#cbd5e1" stroke-width="2"/>
+    <line x1="200" y1="120" x2="320" y2="120" stroke="#cbd5e1" stroke-width="2"/>
+    <line x1="200" y1="140" x2="320" y2="140" stroke="#cbd5e1" stroke-width="2"/>
+    <line x1="200" y1="160" x2="320" y2="160" stroke="#cbd5e1" stroke-width="2"/>
+  </g>
+
+  <!-- Treble Clef -->
+  <g transform="translate(320, 100)">
+    <path d="M 70 140 Q 60 120 60 100 Q 60 60 80 40 Q 100 20 120 40 Q 130 50 125 65 Q 120 75 110 75 Q 100 75 95 70 Q 90 65 90 60 Q 90 50 100 45 Q 105 42 108 45 L 108 140 Q 108 160 100 175 Q 90 190 75 190 Q 55 190 45 175 Q 40 165 40 155 Q 40 145 48 140 Q 55 135 62 140 Q 67 145 67 152 Q 67 158 62 163 M 108 140 Q 118 120 118 100 L 118 90 Q 118 80 115 75"
+          fill="#f59e0b"
+          stroke="#1e293b"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+    <!-- Staff lines behind the clef -->
+    <g opacity="0.3">
+      <line x1="30" y1="80" x2="140" y2="80" stroke="#1e293b" stroke-width="2"/>
+      <line x1="30" y1="95" x2="140" y2="95" stroke="#1e293b" stroke-width="2"/>
+      <line x1="30" y1="110" x2="140" y2="110" stroke="#1e293b" stroke-width="2"/>
+      <line x1="30" y1="125" x2="140" y2="125" stroke="#1e293b" stroke-width="2"/>
+      <line x1="30" y1="140" x2="140" y2="140" stroke="#1e293b" stroke-width="2"/>
+    </g>
+  </g>
+
+  <!-- Decorative musical notes -->
+  <g opacity="0.6">
+    <!-- Note 1 -->
+    <circle cx="120" cy="380" r="12" fill="#f59e0b"/>
+    <rect x="131" y="330" width="4" height="50" fill="#f59e0b"/>
+    <!-- Note 2 -->
+    <circle cx="400" cy="400" r="12" fill="#f59e0b"/>
+    <rect x="411" y="350" width="4" height="50" fill="#f59e0b"/>
+  </g>
+</svg>

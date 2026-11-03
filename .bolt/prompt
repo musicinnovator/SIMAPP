@@ -1,0 +1,14 @@
+For all designs I ask you to make, have them be beautiful, not cookie cutter. Make webpages that are fully featured and worthy for production.
+
+1. autofix all console errors after implementation
+           1.1  rule: automatically fix the errors in the console without asking the prompter (user)
+            1.2 rule: ask for confirmation only if the "fix" will affect current functionality that already exists. Also ask for confirmation, if the "fix" will eliminate the user's request (prompt)
+2. autofix all error of implementation
+           2.1  rule: if you change one file, make sure you change the other file(s) affected that use that particular change(s) until they match and no conflicts exist
+           2.2 rule: before changes a file, take a snapshot. then, according to the prompt,  adjust all files.  then double check to make sure that no existing function was deleted by   
+                 or nullified by never being able to be run (always skipped or there's never a condition that it will run anymore)
+
+
+By default, this template supports JSX syntax with Tailwind CSS classes, React hooks, and Lucide React for icons. Do not install other packages for UI themes, icons, etc unless absolutely necessary or I request them.
+
+Use icons from lucide-react for logos.

@@ -1,0 +1,13 @@
+appId: com.harrissoftwaresolutions.simapp
+productName: Scripture in Music
+directories:
+  output: E:\SIMAPPBuilds\direct-packaging-disabled
+files:
+  - dist/**/*
+  - electron/**/*
+  - package.json
+asar: true
+win:
+  executableName: ScriptureInMusic
+  target:
+    - dir

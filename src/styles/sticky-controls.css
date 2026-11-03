@@ -1,0 +1,165 @@
+/*
+ * ADDITIVE FEATURE: Sticky Music Controls
+ *
+ * Makes music controls always visible while viewing scripture text
+ * Desktop: Sticky positioning at bottom
+ * Mobile: Fixed overlay transport bar (like Spotify/YouTube)
+ */
+
+/* Desktop: Sticky controls that stay at bottom while scrolling */
+@media (min-width: 768px) {
+  .music-controls-sticky {
+    position: sticky;
+    bottom: 0;
+    z-index: 40;
+    background: linear-gradient(to top, rgba(17, 24, 39, 0.98) 80%, transparent);
+    backdrop-filter: blur(12px);
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    margin-top: 2rem;
+  }
+
+  .music-controls-sticky::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+  }
+}
+
+/* Mobile: Fixed transport bar overlay */
+@media (max-width: 767px) {
+  .music-controls-fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(31, 41, 55, 0.95) 100%);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4);
+    padding: 1rem;
+    animation: slideUpControls 0.3s ease-out;
+  }
+
+  /* Add padding to body to prevent content from being hidden under fixed bar */
+  body.music-controls-active {
+    padding-bottom: 140px;
+  }
+
+  /* Compact mobile controls */
+  .music-controls-fixed .music-controls-compact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .music-controls-fixed .control-button-mobile {
+    padding: 0.75rem;
+    min-width: 3rem;
+  }
+
+  .music-controls-fixed .progress-container {
+    order: -1; /* Put progress bar first on mobile */
+  }
+}
+
+/* Animation for mobile controls appearing */
+@keyframes slideUpControls {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Enhanced visual feedback */
+.music-controls-sticky .control-button,
+.music-controls-fixed .control-button {
+  transition: all 0.2s ease;
+}
+
+.music-controls-sticky .control-button:hover,
+.music-controls-fixed .control-button:hover {
+  transform: scale(1.05);
+}
+
+.music-controls-sticky .control-button:active,
+.music-controls-fixed .control-button:active {
+  transform: scale(0.95);
+}
+
+/* Glassmorphism effect for modern look */
+.music-controls-glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Progress bar enhancement for sticky controls */
+.music-controls-sticky .progress-bar,
+.music-controls-fixed .progress-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  cursor: pointer;
+  transition: height 0.2s ease;
+}
+
+.music-controls-sticky .progress-bar:hover,
+.music-controls-fixed .progress-bar:hover {
+  height: 8px;
+}
+
+/* Minimal mode - show only essential controls */
+.music-controls-minimal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+}
+
+/* Current chord display in sticky mode */
+.sticky-current-chord {
+  position: absolute;
+  top: -2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(59, 130, 246, 0.2);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 9999px;
+  padding: 0.5rem 1.5rem;
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+  animation: fadeInChord 0.3s ease;
+}
+
+@keyframes fadeInChord {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .music-controls-sticky {
+    padding-top: 1.5rem;
+  }
+}

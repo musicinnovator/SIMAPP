@@ -1,0 +1,22 @@
+name: SIMAPP Windows release
+
+on:
+  workflow_dispatch:
+    inputs:
+      label:
+        description: 'Feature or release label'
+        required: true
+        type: string
+
+jobs:
+  package:
+    runs-on: [self-hosted, windows, simapp-external]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run package:external -- "${{ inputs.label }}" -Preflight
+      - run: npm run package:external -- "${{ inputs.label }}"

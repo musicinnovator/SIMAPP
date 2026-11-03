@@ -1,0 +1,600 @@
+/**
+ * Preferences Visual Effects CSS
+ *
+ * Implements all visual effects for user preferences including:
+ * - Color schemes with palettes
+ * - Surface finishes (glossy, metallic, etc.)
+ * - Theme modes (light/dark/auto)
+ * - Background styles
+ * - Layout density
+ * - Button styles
+ */
+
+/* ============================================
+   COLOR SCHEMES - Apply palette colors globally
+   ============================================ */
+
+:root {
+  /* Default variables */
+  --accent-color: #00ffff;
+  --text-color: #ffffff;
+  --font-family: system-ui;
+  --text-scale: 1;
+}
+
+/* Monochrome */
+[data-color-scheme="monochrome"] {
+  --scheme-primary: #ffffff;
+  --scheme-secondary: #9ca3af;
+  --scheme-accent: #6b7280;
+  --scheme-background: #111827;
+  --scheme-text: #f9fafb;
+}
+
+/* Warm */
+[data-color-scheme="warm"] {
+  --scheme-primary: #f59e0b;
+  --scheme-secondary: #dc2626;
+  --scheme-accent: #fbbf24;
+  --scheme-background: #1f2937;
+  --scheme-text: #fef3c7;
+}
+
+/* Cool */
+[data-color-scheme="cool"] {
+  --scheme-primary: #3b82f6;
+  --scheme-secondary: #06b6d4;
+  --scheme-accent: #8b5cf6;
+  --scheme-background: #0f172a;
+  --scheme-text: #dbeafe;
+}
+
+/* Earth */
+[data-color-scheme="earth"] {
+  --scheme-primary: #78350f;
+  --scheme-secondary: #92400e;
+  --scheme-accent: #854d0e;
+  --scheme-background: #1c1917;
+  --scheme-text: #fef3c7;
+}
+
+/* Jewel */
+[data-color-scheme="jewel"] {
+  --scheme-primary: #059669;
+  --scheme-secondary: #7c3aed;
+  --scheme-accent: #dc2626;
+  --scheme-background: #111827;
+  --scheme-text: #ecfccb;
+}
+
+/* Neutral */
+[data-color-scheme="neutral"] {
+  --scheme-primary: #6b7280;
+  --scheme-secondary: #9ca3af;
+  --scheme-accent: #d1d5db;
+  --scheme-background: #1f2937;
+  --scheme-text: #f3f4f6;
+}
+
+/* Pastel */
+[data-color-scheme="pastel"] {
+  --scheme-primary: #fca5a5;
+  --scheme-secondary: #bfdbfe;
+  --scheme-accent: #d8b4fe;
+  --scheme-background: #fef3c7;
+  --scheme-text: #374151;
+}
+
+/* Neon */
+[data-color-scheme="neon"] {
+  --scheme-primary: #ff00ff;
+  --scheme-secondary: #00ffff;
+  --scheme-accent: #ff00aa;
+  --scheme-background: #000000;
+  --scheme-text: #ffffff;
+}
+
+/* Cyberpunk */
+[data-color-scheme="cyberpunk"] {
+  --scheme-primary: #ff00ff;
+  --scheme-secondary: #00ffff;
+  --scheme-accent: #ffff00;
+  --scheme-background: #0a0a0a;
+  --scheme-text: #00ff00;
+}
+
+/* Vaporwave */
+[data-color-scheme="vaporwave"] {
+  --scheme-primary: #ff71ce;
+  --scheme-secondary: #01cdfe;
+  --scheme-accent: #05ffa1;
+  --scheme-background: #2e2157;
+  --scheme-text: #fffb96;
+}
+
+/* Retro 80s */
+[data-color-scheme="retro-80s"] {
+  --scheme-primary: #ff6b9d;
+  --scheme-secondary: #00d9ff;
+  --scheme-accent: #ffa500;
+  --scheme-background: #1a1a2e;
+  --scheme-text: #ffffff;
+}
+
+/* Nature */
+[data-color-scheme="nature"] {
+  --scheme-primary: #84cc16;
+  --scheme-secondary: #22c55e;
+  --scheme-accent: #a3e635;
+  --scheme-background: #14532d;
+  --scheme-text: #f0fdf4;
+}
+
+/* Ocean Breeze */
+[data-color-scheme="ocean-breeze"] {
+  --scheme-primary: #0ea5e9;
+  --scheme-secondary: #06b6d4;
+  --scheme-accent: #67e8f9;
+  --scheme-background: #0c4a6e;
+  --scheme-text: #e0f2fe;
+}
+
+/* Golden Hour */
+[data-color-scheme="golden-hour"] {
+  --scheme-primary: #fbbf24;
+  --scheme-secondary: #fb923c;
+  --scheme-accent: #f59e0b;
+  --scheme-background: #78350f;
+  --scheme-text: #fef3c7;
+}
+
+/* Black Gold */
+[data-color-scheme="black-gold"] {
+  --scheme-primary: #fbbf24;
+  --scheme-secondary: #f59e0b;
+  --scheme-accent: #eab308;
+  --scheme-background: #000000;
+  --scheme-text: #fef3c7;
+}
+
+/* Navy Silver */
+[data-color-scheme="navy-silver"] {
+  --scheme-primary: #cbd5e1;
+  --scheme-secondary: #94a3b8;
+  --scheme-accent: #64748b;
+  --scheme-background: #1e293b;
+  --scheme-text: #f1f5f9;
+}
+
+/* Material Design */
+[data-color-scheme="material-design"] {
+  --scheme-primary: #1976d2;
+  --scheme-secondary: #388e3c;
+  --scheme-accent: #f57c00;
+  --scheme-background: #121212;
+  --scheme-text: #ffffff;
+}
+
+/* Fluent Design */
+[data-color-scheme="fluent-design"] {
+  --scheme-primary: #0078d4;
+  --scheme-secondary: #8764b8;
+  --scheme-accent: #00bcf2;
+  --scheme-background: #1b1b1b;
+  --scheme-text: #ffffff;
+}
+
+/* Nord */
+[data-color-scheme="nord"] {
+  --scheme-primary: #88c0d0;
+  --scheme-secondary: #81a1c1;
+  --scheme-accent: #5e81ac;
+  --scheme-background: #2e3440;
+  --scheme-text: #eceff4;
+}
+
+/* Solarized */
+[data-color-scheme="solarized"] {
+  --scheme-primary: #268bd2;
+  --scheme-secondary: #2aa198;
+  --scheme-accent: #859900;
+  --scheme-background: #002b36;
+  --scheme-text: #fdf6e3;
+}
+
+/* ============================================
+   SURFACE FINISHES - Apply visual effects
+   ============================================ */
+
+/* Glossy - Shiny, reflective surface */
+[data-finish="glossy"] {
+  --finish-filter: brightness(1.1) saturate(1.2);
+  --finish-shine: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+}
+
+[data-finish="glossy"] .bg-white\/5,
+[data-finish="glossy"] .bg-white\/10 {
+  background-image: var(--finish-shine);
+  filter: var(--finish-filter);
+}
+
+/* Satin - Soft, subtle sheen */
+[data-finish="satin"] {
+  --finish-filter: brightness(1.05) saturate(1.05);
+}
+
+[data-finish="satin"] .bg-white\/5,
+[data-finish="satin"] .bg-white\/10 {
+  filter: var(--finish-filter);
+  background-image: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+}
+
+/* Metallic - Metal-like appearance */
+[data-finish="metallic"] {
+  --finish-shine: linear-gradient(90deg,
+    rgba(255,255,255,0.1) 0%,
+    rgba(255,255,255,0.3) 25%,
+    rgba(255,255,255,0.1) 50%,
+    rgba(255,255,255,0.3) 75%,
+    rgba(255,255,255,0.1) 100%);
+}
+
+[data-finish="metallic"] .bg-white\/5,
+[data-finish="metallic"] .bg-white\/10 {
+  background-image: var(--finish-shine);
+  background-size: 200% 100%;
+  animation: metallic-shine 3s ease-in-out infinite;
+}
+
+@keyframes metallic-shine {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+}
+
+/* Brushed Metal */
+[data-finish="brushed-metal"] {
+  --finish-texture: repeating-linear-gradient(
+    90deg,
+    rgba(255,255,255,0.05) 0px,
+    rgba(255,255,255,0.05) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
+
+[data-finish="brushed-metal"] .bg-white\/5,
+[data-finish="brushed-metal"] .bg-white\/10 {
+  background-image: var(--finish-texture);
+  filter: brightness(1.1) saturate(0.9);
+}
+
+/* Iridescent - Rainbow effect */
+[data-finish="iridescent"] {
+  --finish-rainbow: linear-gradient(
+    135deg,
+    rgba(255,0,255,0.2),
+    rgba(0,255,255,0.2),
+    rgba(255,255,0,0.2),
+    rgba(255,0,255,0.2)
+  );
+}
+
+[data-finish="iridescent"] .bg-white\/5,
+[data-finish="iridescent"] .bg-white\/10 {
+  background-image: var(--finish-rainbow);
+  background-size: 400% 400%;
+  animation: iridescent-shift 6s ease-in-out infinite;
+}
+
+@keyframes iridescent-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Holographic */
+[data-finish="holographic"] {
+  --finish-holo: linear-gradient(
+    45deg,
+    rgba(255,0,255,0.3) 0%,
+    rgba(0,255,255,0.3) 25%,
+    rgba(255,255,0,0.3) 50%,
+    rgba(0,255,255,0.3) 75%,
+    rgba(255,0,255,0.3) 100%
+  );
+}
+
+[data-finish="holographic"] .bg-white\/5,
+[data-finish="holographic"] .bg-white\/10 {
+  background-image: var(--finish-holo);
+  background-size: 300% 300%;
+  animation: holographic-rotate 8s linear infinite;
+  filter: brightness(1.2);
+}
+
+@keyframes holographic-rotate {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+/* Textured - Subtle grain */
+[data-finish="textured"] {
+  --finish-grain: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><filter id="noise"><feTurbulence baseFrequency="0.9" /></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.1"/></svg>');
+}
+
+[data-finish="textured"] .bg-white\/5,
+[data-finish="textured"] .bg-white\/10 {
+  background-image: var(--finish-grain);
+}
+
+/* Soft Touch - Matte, smooth */
+[data-finish="soft-touch"] {
+  --finish-filter: saturate(0.9) brightness(0.95);
+}
+
+[data-finish="soft-touch"] .bg-white\/5,
+[data-finish="soft-touch"] .bg-white\/10 {
+  filter: var(--finish-filter);
+  backdrop-filter: blur(2px);
+}
+
+/* Velvet - Deep, rich appearance */
+[data-finish="velvet"] {
+  --finish-filter: saturate(1.3) brightness(0.9) contrast(1.1);
+}
+
+[data-finish="velvet"] .bg-white\/5,
+[data-finish="velvet"] .bg-white\/10 {
+  filter: var(--finish-filter);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Pearlescent */
+[data-finish="pearlescent"] {
+  --finish-pearl: radial-gradient(circle at 50% 50%,
+    rgba(255,255,255,0.2) 0%,
+    rgba(200,200,255,0.1) 50%,
+    transparent 100%
+  );
+}
+
+[data-finish="pearlescent"] .bg-white\/5,
+[data-finish="pearlescent"] .bg-white\/10 {
+  background-image: var(--finish-pearl);
+  filter: brightness(1.15) saturate(1.1);
+}
+
+/* Frosted - Glass-like blur */
+[data-finish="frosted"] {
+  backdrop-filter: blur(12px) saturate(1.2);
+}
+
+[data-finish="frosted"] .bg-white\/5,
+[data-finish="frosted"] .bg-white\/10 {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* Polished - High gloss */
+[data-finish="polished"] {
+  --finish-filter: brightness(1.2) saturate(1.3) contrast(1.1);
+}
+
+[data-finish="polished"] .bg-white\/5,
+[data-finish="polished"] .bg-white\/10 {
+  filter: var(--finish-filter);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+
+/* Grainy - Film grain effect */
+[data-finish="grainy"] {
+  --finish-grain: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><filter id="grain"><feTurbulence baseFrequency="1.5" /></filter><rect width="100%" height="100%" filter="url(%23grain)" opacity="0.15"/></svg>');
+}
+
+[data-finish="grainy"] .bg-white\/5,
+[data-finish="grainy"] .bg-white\/10 {
+  background-image: var(--finish-grain);
+  filter: contrast(1.05);
+}
+
+/* Translucent - Semi-transparent */
+[data-finish="translucent"] {
+  backdrop-filter: blur(8px);
+}
+
+[data-finish="translucent"] .bg-white\/5,
+[data-finish="translucent"] .bg-white\/10 {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(8px);
+}
+
+/* Diffused - Soft, spread light */
+[data-finish="diffused"] {
+  --finish-glow: radial-gradient(circle at 50% 0%,
+    rgba(255,255,255,0.1) 0%,
+    transparent 70%
+  );
+}
+
+[data-finish="diffused"] .bg-white\/5,
+[data-finish="diffused"] .bg-white\/10 {
+  background-image: var(--finish-glow);
+  filter: brightness(1.05) blur(0.5px);
+}
+
+/* ============================================
+   THEME MODES - Light/Dark/Auto
+   ============================================ */
+
+/* Dark Mode (default) */
+.dark,
+:root {
+  color-scheme: dark;
+}
+
+.dark body {
+  background: var(--scheme-background, #1a1a2e);
+  color: var(--scheme-text, #ffffff);
+}
+
+/* Light Mode */
+.light {
+  color-scheme: light;
+}
+
+.light body {
+  background: #f5f5f5;
+  color: #1a1a2e;
+}
+
+.light .bg-white\/5 {
+  background: rgba(0,0,0,0.05);
+}
+
+.light .bg-white\/10 {
+  background: rgba(0,0,0,0.1);
+}
+
+.light .text-white {
+  color: #1a1a2e;
+}
+
+.light .text-gray-400 {
+  color: #6b7280;
+}
+
+.light .border-white\/10 {
+  border-color: rgba(0,0,0,0.1);
+}
+
+.light .border-white\/20 {
+  border-color: rgba(0,0,0,0.2);
+}
+
+/* Auto Mode - respects system preference */
+@media (prefers-color-scheme: light) {
+  :root:not(.dark):not(.light),
+  body:not(.dark):not(.light) {
+    color-scheme: light;
+    background: #f5f5f5;
+    color: #1a1a2e;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.dark):not(.light),
+  body:not(.dark):not(.light) {
+    color-scheme: dark;
+    background: var(--scheme-background, #1a1a2e);
+    color: var(--scheme-text, #ffffff);
+  }
+}
+
+/* ============================================
+   LAYOUT DENSITY
+   ============================================ */
+
+/* Compact */
+[data-density="compact"] {
+  --spacing-unit: 0.5rem;
+  --padding-sm: 0.5rem;
+  --padding-md: 0.75rem;
+  --padding-lg: 1rem;
+}
+
+/* Comfortable (default) */
+[data-density="comfortable"] {
+  --spacing-unit: 0.75rem;
+  --padding-sm: 0.75rem;
+  --padding-md: 1rem;
+  --padding-lg: 1.5rem;
+}
+
+/* Spacious */
+[data-density="spacious"] {
+  --spacing-unit: 1rem;
+  --padding-sm: 1rem;
+  --padding-md: 1.5rem;
+  --padding-lg: 2rem;
+}
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+
+/* Rounded (default) */
+[data-button-style="rounded"] button {
+  border-radius: 0.5rem;
+}
+
+/* Sharp */
+[data-button-style="sharp"] button {
+  border-radius: 0;
+}
+
+/* Pill */
+[data-button-style="pill"] button {
+  border-radius: 9999px;
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* High Contrast Mode */
+.high-contrast {
+  --scheme-text: #ffffff;
+  --scheme-background: #000000;
+}
+
+.high-contrast body {
+  background: #000000;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.high-contrast .bg-white\/5 {
+  background: rgba(255,255,255,0.2);
+  border: 2px solid rgba(255,255,255,0.5);
+}
+
+.high-contrast .bg-white\/10 {
+  background: rgba(255,255,255,0.3);
+  border: 2px solid rgba(255,255,255,0.6);
+}
+
+/* Reduced Motion */
+.reduce-motion,
+.reduce-motion * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* ============================================
+   APPLY COLOR SCHEME TO ELEMENTS
+   ============================================ */
+
+/* Apply primary color */
+.bg-purple-500,
+.bg-blue-500,
+.bg-green-500 {
+  background-color: var(--scheme-primary) !important;
+}
+
+/* Apply secondary color */
+.text-purple-300,
+.text-blue-300 {
+  color: var(--scheme-secondary) !important;
+}
+
+/* Apply accent color */
+.text-purple-400,
+.text-blue-400 {
+  color: var(--scheme-accent) !important;
+}
+
+/* Apply text color */
+.text-white {
+  color: var(--scheme-text) !important;
+}
