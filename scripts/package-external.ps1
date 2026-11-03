@@ -100,6 +100,7 @@ try {
   } finally { Pop-Location }
 
   $configPath = Join-Path $stagingRoot 'electron-builder.config.cjs'
+  $iconPath = (Join-Path $repoRoot 'public\icon-512.png').Replace('\', '/')
   $config = @"
 module.exports = {
   appId: 'com.harrissoftwaresolutions.simapp',
@@ -107,6 +108,7 @@ module.exports = {
   directories: { output: '$($builderOutput.Replace('\', '/'))' },
   files: ['dist/**/*', 'electron/**/*', 'package.json'],
   asar: true,
+  icon: '$iconPath',
   win: { executableName: 'ScriptureInMusic', target: ['dir'] }
 };
 "@

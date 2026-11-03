@@ -7,6 +7,7 @@ files:
   - electron/**/*
   - package.json
 asar: true
+icon: public/icon-512.png
 win:
   executableName: ScriptureInMusic
   target:

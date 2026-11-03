@@ -1,4 +1,4 @@
-const { app, BrowserWindow, dialog, ipcMain, net, protocol, session, shell } = require('electron');
+const { app, BrowserWindow, dialog, ipcMain, Menu, nativeImage, net, protocol, session, shell, Tray } = require('electron');
 const fs = require('node:fs/promises');
 const path = require('node:path');
 const { pathToFileURL } = require('node:url');
@@ -6,6 +6,10 @@ const { pathToFileURL } = require('node:url');
 const APP_SCHEME = 'simapp';
 const APP_ID = 'com.harrissoftwaresolutions.simapp';
 const isDevelopment = !app.isPackaged && Boolean(process.env.VITE_DEV_SERVER_URL);
+let mainWindow = null;
+let splashWindow = null;
+let tray = null;
+let isQuitting = false;
 
 protocol.registerSchemesAsPrivileged([
   {
@@ -17,7 +21,13 @@ protocol.registerSchemesAsPrivileged([
 app.setAppUserModelId(APP_ID);
 
 function getRendererRoot() {
-  return path.join(app.isPackaged ? process.resourcesPath : path.join(__dirname, '..'), 'dist');
+  // The renderer is inside app.asar when packaged. Using process.resourcesPath
+  // would incorrectly look for resources/dist outside the archive.
+  return path.join(app.isPackaged ? app.getAppPath() : path.join(__dirname, '..'), 'dist');
+}
+
+function getRendererAsset(name) {
+  return path.join(getRendererRoot(), name);
 }
 
 function getDataRoot() {
@@ -73,6 +83,12 @@ async function netFetchFile(filePath) {
 }
 
 async function createWindow() {
+  if (mainWindow && !mainWindow.isDestroyed()) {
+    mainWindow.show();
+    mainWindow.focus();
+    return mainWindow;
+  }
+
   const window = new BrowserWindow({
     width: 1440,
     height: 960,
@@ -80,6 +96,8 @@ async function createWindow() {
     minHeight: 640,
     backgroundColor: '#0B1220',
     title: 'Scripture in Music',
+    icon: getRendererAsset('icon-192.png'),
+    show: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.cjs'),
       contextIsolation: true,
@@ -102,11 +120,85 @@ async function createWindow() {
     }
   });
 
-  if (isDevelopment) {
-    await window.loadURL(process.env.VITE_DEV_SERVER_URL);
-  } else {
-    await window.loadURL(`${APP_SCHEME}://app/index.html`);
+  window.on('close', (event) => {
+    if (!isQuitting) {
+      event.preventDefault();
+      window.hide();
+    }
+  });
+  window.on('closed', () => {
+    mainWindow = null;
+  });
+
+  mainWindow = window;
+
+  try {
+    if (isDevelopment) {
+      await window.loadURL(process.env.VITE_DEV_SERVER_URL);
+    } else {
+      await window.loadURL(`${APP_SCHEME}://app/index.html`);
+    }
+    window.show();
+  } finally {
+    if (splashWindow && !splashWindow.isDestroyed()) {
+      splashWindow.close();
+      splashWindow = null;
+    }
   }
+
+  return window;
+}
+
+function createSplashWindow() {
+  splashWindow = new BrowserWindow({
+    width: 720,
+    height: 420,
+    frame: false,
+    resizable: false,
+    movable: true,
+    center: true,
+    show: true,
+    backgroundColor: '#0B1220',
+    icon: getRendererAsset('icon-192.png'),
+    webPreferences: {
+      contextIsolation: true,
+      nodeIntegration: false,
+      sandbox: true,
+    },
+  });
+  splashWindow.setMenuBarVisibility(false);
+  splashWindow.loadURL(`${APP_SCHEME}://app/splash.html`).catch(() => {});
+  return splashWindow;
+}
+
+function createTray() {
+  if (tray && !tray.isDestroyed()) return tray;
+
+  const image = nativeImage.createFromPath(getRendererAsset('icon-192.png'));
+  tray = new Tray(image.isEmpty() ? nativeImage.createEmpty() : image.resize({ width: 32, height: 32 }));
+  tray.setToolTip('Scripture in Music — Offline Edition');
+  tray.setContextMenu(Menu.buildFromTemplate([
+    {
+      label: 'Open Scripture in Music',
+      click: () => {
+        if (mainWindow && !mainWindow.isDestroyed()) {
+          mainWindow.show();
+          mainWindow.focus();
+        } else {
+          createWindow();
+        }
+      },
+    },
+    { type: 'separator' },
+    { label: 'Quit', click: () => { isQuitting = true; app.quit(); } },
+  ]));
+  tray.on('click', () => {
+    if (mainWindow && !mainWindow.isDestroyed()) {
+      if (mainWindow.isVisible()) mainWindow.hide();
+      else { mainWindow.show(); mainWindow.focus(); }
+    }
+  });
+  return tray;
 }
 
 ipcMain.handle('storage:save-json', async (_event, { key, value }) => {
@@ -147,7 +239,13 @@ app.whenReady().then(async () => {
   session.defaultSession.setPermissionRequestHandler((_webContents, permission, callback) => {
     callback(permission === 'media');
   });
+  createTray();
+  createSplashWindow();
   await createWindow();
+});
+
+app.on('before-quit', () => {
+  isQuitting = true;
 });
 
 app.on('window-all-closed', () => {
